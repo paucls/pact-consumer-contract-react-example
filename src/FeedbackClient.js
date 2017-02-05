@@ -8,11 +8,14 @@ class FeedbackClient {
     create(feedback) {
         const headers = {"Accept": "application/json"};
 
-        return axios.post(`${this.host}/events`, feedback, headers)
-            .then(function (response) {
-                return response.data;
-            });
-
+        return axios({
+            url: `${this.host}/feedbacks`,
+            method: 'POST',
+            headers: headers,
+            data: feedback
+        }).then(function (response) {
+            return response.data;
+        });
     }
 }
 
