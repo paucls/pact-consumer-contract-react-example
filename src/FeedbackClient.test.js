@@ -2,7 +2,6 @@ import Pact from "pact";
 import wrapper from "@pact-foundation/pact-node";
 import path from "path";
 import FeedbackClient from "./FeedbackClient";
-import {feedbackClientFixtures} from "./fixtures/feedback-client";
 
 describe('Feedback Client', function () {
 
@@ -40,10 +39,19 @@ describe('Feedback Client', function () {
         done();
     }
 
-    describe('create feedback', function () {
+    describe('create()', function () {
 
-        const feedback = feedbackClientFixtures.getFeedback;
-        const expectedResult = feedbackClientFixtures.getFeedback;
+        const feedback = {
+            category: 'Question',
+            title: 'Export projects',
+            message: 'Is it possible to export projects on this app?'
+        };
+        const expectedResult = {
+            id: '1',
+            category: 'Question',
+            title: 'Export projects',
+            message: 'Is it possible to export projects on this app?'
+        };
 
         beforeEach((done) => {
             provider.addInteraction({
